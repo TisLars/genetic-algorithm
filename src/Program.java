@@ -19,10 +19,10 @@ public class Program {
 //        System.out.println(result + "\t\t" + highest);
 
         // Set a candidate solution
-//        FitnessCalc.setSolution("1111000000000000000000000100000000000100000000010000000010001101");
+//        FitnessCalc.setSolution("00011");
 
         // Create an initial population
-        Population myPop = new Population(50, true);
+        Population myPop = new Population(3, true);
 
         // Evolve our population until we reach an optimum solution
         int generationCount = 0;
@@ -35,11 +35,5 @@ public class Program {
         System.out.println("Generation: " + generationCount);
         System.out.println("Genes:");
         System.out.println(myPop.getFittest());
-    }
-
-    public static double calculateFormula(int x) {
-        double result = (-x * x) + (7 * x);
-
-        return result;
     }
 }
