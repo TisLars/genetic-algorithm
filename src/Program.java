@@ -4,8 +4,22 @@
 public class Program {
 
     public static void main(String[] args) {
+//        double result = 0;
+//        int highest = 0;
+//
+//        for (int i = 0; i < 31; i++) {
+//            double calc = calculateFormula(i);
+//            System.out.println(calc + "\t\t" + i);
+//            if (calc > result) {
+//                result = calc;
+//                highest = i;
+//            }
+//        }
+
+//        System.out.println(result + "\t\t" + highest);
+
         // Set a candidate solution
-        FitnessCalc.setSolution("1111000000000000000000000100000000000100000000010000000010001101");
+//        FitnessCalc.setSolution("1111000000000000000000000100000000000100000000010000000010001101");
 
         // Create an initial population
         Population myPop = new Population(50, true);
@@ -21,5 +35,11 @@ public class Program {
         System.out.println("Generation: " + generationCount);
         System.out.println("Genes:");
         System.out.println(myPop.getFittest());
+    }
+
+    public static double calculateFormula(int x) {
+        double result = (-x * x) + (7 * x);
+
+        return result;
     }
 }

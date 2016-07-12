@@ -3,7 +3,7 @@
  */
 public class FitnessCalc {
 
-    static byte[] solution = new byte[64];
+    static byte[] solution = new byte[5];
 
     /* Public methods */
     // Set a candidate solution as a byte array
@@ -30,6 +30,10 @@ public class FitnessCalc {
     // Calculate inidividuals fittness by comparing it to our candidate solution
     static int getFitness(Individual individual) {
         int fitness = 0;
+
+        Integer x = Integer.parseInt(individual.toString(), 2);
+        int valueAfterCalculation = calculateFormula(x);
+
         // Loop through our individuals genes and compare them to our cadidates
         for (int i = 0; i < individual.size() && i < solution.length; i++) {
             if (individual.getGene(i) == solution[i]) {
@@ -37,6 +41,12 @@ public class FitnessCalc {
             }
         }
         return fitness;
+    }
+
+    public static int calculateFormula(int x) {
+        int result = (-x * x) + (7 * x);
+
+        return result;
     }
 
     // Get optimum fitness
