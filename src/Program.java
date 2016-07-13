@@ -3,37 +3,29 @@
  */
 public class Program {
 
+    private static final int TOTAL_ITERATIONS = 500;
+    private static final int POPULATION_SIZE = 40;
+
     public static void main(String[] args) {
-//        double result = 0;
-//        int highest = 0;
-//
-//        for (int i = 0; i < 31; i++) {
-//            double calc = calculateFormula(i);
-//            System.out.println(calc + "\t\t" + i);
-//            if (calc > result) {
-//                result = calc;
-//                highest = i;
-//            }
-//        }
+        Population myPop = new Population(POPULATION_SIZE, true);
 
-//        System.out.println(result + "\t\t" + highest);
+        FitnessCalc.setSolution("00011");
+        int bestFitness = Integer.MIN_VALUE;
+        Individual bestIndividual = null;
 
-        // Set a candidate solution
-//        FitnessCalc.setSolution("00011");
+        int noImprovementCount = 0;
 
-        // Create an initial population
-        Population myPop = new Population(3, true);
-
-        // Evolve our population until we reach an optimum solution
-        int generationCount = 0;
-        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness()) {
-            generationCount++;
-            System.out.println("Generation: " + generationCount + " Fittest: " + myPop.getFittest().getFitness());
+        for (int generationCount = 0; generationCount < TOTAL_ITERATIONS; generationCount++) {
+            System.out.println("Generation: " + generationCount + "\nFittest: " + myPop.getFittest().getFitness());
             myPop = Algorithm.evolvePopulation(myPop);
+
+            if (bestFitness < myPop.getFittest().getFitness()) {
+                bestIndividual = myPop.getFittest();
+                noImprovementCount = 0;
+            } else if (++noImprovementCount == 5) {
+                break;
+            }
         }
-        System.out.println("Solution found!");
-        System.out.println("Generation: " + generationCount);
-        System.out.println("Genes:");
-        System.out.println(myPop.getFittest());
+        System.out.println("Value of x: " + Integer.parseInt(bestIndividual.toString(), 2));
     }
 }

@@ -31,21 +31,24 @@ public class FitnessCalc {
     static int getFitness(Individual individual) {
         int fitness = 0;
 
-        Integer x = Integer.parseInt(individual.toString(), 2);
-        fitness = calculateFormula(x);
-
+        // Loop through our individuals genes and compare them to our cadidates
+        for (int i = 0; i < individual.size() && i < solution.length; i++) {
+            if (individual.getGene(i) == solution[i]) {
+                fitness++;
+            }
+        }
         return fitness;
-    }
-
-    public static int calculateFormula(int x) {
-        int result = (-x * x) + (7 * x);
-
-        return result;
     }
 
     // Get optimum fitness
     static int getMaxFitness() {
         int maxFitness = solution.length;
         return maxFitness;
+    }
+
+    public static int calculateFormula(int x) {
+        int result = (-x * x) + (7 * x);
+
+        return result;
     }
 }
